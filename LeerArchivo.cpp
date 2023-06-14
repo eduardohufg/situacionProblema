@@ -7,7 +7,15 @@ Leer el archivo de texto en c++
 #include <fstream>
 #include <sstream> // para string-stream
 #include <vector>
+#include "Video.h"
+#include "Pelicula.h"
+#include "Episodio.h"
 using namespace std;
+
+
+
+vector<Episodio> episodios;
+vector<Pelicula> peliculas;
 
 
 
@@ -21,6 +29,8 @@ int main(int argc, char const *argv[]){
     string linea;
 
     int numeroDeLinea =1;
+    int contaPelis =0;
+    int contaEpis =0;
     while (getline (entrada, linea)){
 
         //cout<<(numeroDeLinea++)<<":"<<linea<<endl;
@@ -30,17 +40,30 @@ int main(int argc, char const *argv[]){
         cout<<numeroDeLinea++<<" ";
         if (datos.size()== 6){
             cout <<"pelicula";
-            //new Pelicula(datos)
+
+            //string a = datos[0];
+            //string b = datos[1];
+            //string c = datos[2];
+            //string d = datos[3];
+            //string e = datos[4];
+            //string f = datos[5];
+            //string g = datos[6];
+
+            //Pelicula hola(a,b,c,d,e,f);
+        
+            //cout<<hola.getFecha();
 
         }
         else{
             cout<<"episodio";
+            
 
         }
         cout<<endl;
     
     }
 
+    
     entrada.close();
 
 
