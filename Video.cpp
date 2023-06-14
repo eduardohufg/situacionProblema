@@ -1,7 +1,25 @@
 #include "Video.h"
+#include <vector>
 
-Video::Video(): Video("tt0000000","Sin nombre", "Sin genero", 0,0,"01/01/0000")
+Video::Video()
 {
+    ID = "TT0000000";
+    nombre = "Sin nombre";
+    genero = "Sin genero";
+    calificacion = "0";
+    duracion ="0";
+    fecha = "01/01/0000";
+}
+
+Video::Video(vector<string> vec)
+{
+    ID = vec[0];
+    nombre = vec[1];
+    genero = vec[2];
+    calificacion = vec[3];
+    duracion =vec[4];
+    fecha = vec[5];
+    
 }
 
 Video::Video(string ID, string nombre, string genero, string calificacion, string duracion, string fecha)

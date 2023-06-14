@@ -31,6 +31,7 @@ int main(int argc, char const *argv[]){
     int numeroDeLinea =1;
     int contaPelis =0;
     int contaEpis =0;
+    
     while (getline (entrada, linea)){
 
         //cout<<(numeroDeLinea++)<<":"<<linea<<endl;
@@ -39,23 +40,18 @@ int main(int argc, char const *argv[]){
 
         cout<<numeroDeLinea++<<" ";
         if (datos.size()== 6){
-            cout <<"pelicula";
+            //cout <<"pelicula";
+        
+            Pelicula hola(datos);
 
-            //string a = datos[0];
-            //string b = datos[1];
-            //string c = datos[2];
-            //string d = datos[3];
-            //string e = datos[4];
-            //string f = datos[5];
-            //string g = datos[6];
-
-            //Pelicula hola(a,b,c,d,e,f);
+            peliculas.push_back(hola);
         
             //cout<<hola.getFecha();
+            //stoi
 
         }
         else{
-            cout<<"episodio";
+           // cout<<"episodio";
             
 
         }
@@ -63,8 +59,12 @@ int main(int argc, char const *argv[]){
     
     }
 
+    cout<<peliculas[1].getNombreVideo()<<endl;
+    cout<<peliculas[2].getNombreVideo()<<endl;
     
     entrada.close();
+
+
 
 
 
@@ -82,6 +82,8 @@ vector<string> separar(string linea){
 
 string dato;  //token individual
 int numeroTokens = 0;
+
+    
     while ( getline(entrada, dato, ','))
     {
 

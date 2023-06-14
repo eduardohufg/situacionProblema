@@ -1,6 +1,7 @@
 #include "Pelicula.h"
+#include <vector>
 
-Pelicula::Pelicula(string ID, string nombre, string genero, string calificacion, string duracion, string fecha): Video(ID, nombre, genero, calificacion, duracion, fecha)
+Pelicula::Pelicula(vector<string> vec): Video(vec[0],vec[1],vec[2],vec[3],vec[4],vec[5])
 {
 }
 

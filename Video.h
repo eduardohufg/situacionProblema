@@ -6,6 +6,7 @@ Declaramos la clase base Video(metodos y atributos)
 #define VIDEO_H
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -22,7 +23,9 @@ class Video{
     public:
 
         Video();
-        Video(string ID, string nombre, string genero, string calificacion, string duracion, string fecha);
+        Video(vector<string> vec);
+        Video(string ID,string nombre,string genero,string calificacion,string duracion,string fecha);
+
         virtual void mostrarDatos() = 0;
         string getId();
         string getNombreVideo();

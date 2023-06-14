@@ -1,12 +1,12 @@
 #include "Episodio.h"
+#include <vector>
 
-Episodio::Episodio(string ID, string nombre, string genero, string calificacion, string duracion, string fecha,
- string IDEpisodio, string nombreEpisodio, int temporadaEpisodio, int numeroEpisodio) : Video(ID, nombre, genero, calificacion, duracion, fecha)
+Episodio::Episodio(vector<string> vec) : Video(vec[0],vec[1],vec[2],vec[3],vec[4],vec[5])
 {
-    this -> IDEpisodio = IDEpisodio;
-    this -> nombreEpisodio = nombreEpisodio;
-    this -> temporadaEpisodio = temporadaEpisodio;
-    this -> numeroEpisodio = numeroEpisodio;
+    IDEpisodio = vec[6];
+    nombreEpisodio =vec[7];
+    temporadaEpisodio = vec[8];
+    numeroEpisodio = vec[9];
 
 }
 
@@ -20,12 +20,12 @@ string Episodio::getNombreEpisodio()
     return nombreEpisodio;
 }
 
-int Episodio::getTemporadaEpisodio()
+string Episodio::getTemporadaEpisodio()
 {
     return temporadaEpisodio;
 }
 
-int Episodio::getNumeroEpisodio()
+string Episodio::getNumeroEpisodio()
 {
     return numeroEpisodio;
 }

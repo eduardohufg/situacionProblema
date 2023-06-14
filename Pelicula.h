@@ -7,6 +7,7 @@ Declaramos la clase hija Pelicula(metodos y atributos)
 
 #include <iostream>
 #include "Video.h"
+#include <vector>
 
 using namespace std;
 
@@ -14,8 +15,9 @@ class Pelicula: public Video
 {
 
     public:
+    Pelicula(vector<string> vec);
 
-    Pelicula(string ID, string nombre, string genero, string calificacion, string duracion, string fecha);
+    //Pelicula(string ID, string nombre, string genero, string calificacion, string duracion, string fecha);
     void mostrarDatos();
 
 };

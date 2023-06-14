@@ -7,6 +7,7 @@ Declaramos la clase hija Episodio(metodos y atributos)
 
 #include <iostream>
 #include "Video.h"
+#include <vector>
 
 using namespace std;
 
@@ -15,17 +16,16 @@ class Episodio: public Video
     private:
         string IDEpisodio;
         string nombreEpisodio;
-        int temporadaEpisodio;
-        int numeroEpisodio;
+        string temporadaEpisodio;
+        string numeroEpisodio;
 
     public:
 
-        Episodio(string ID, string nombre, string genero, string calificacion, string duracion, string fecha, string IDEpisodio
-        ,string nombreEpisodio,int temporadaEpisodio,int numeroEpisodio);
+        Episodio(vector<string> vec);
         string getIDEpisodio();
         string getNombreEpisodio();
-        int getTemporadaEpisodio();
-        int getNumeroEpisodio();
+        string getTemporadaEpisodio();
+        string getNumeroEpisodio();
         void mostrarDatos();
 };
 
