@@ -13,12 +13,14 @@ using namespace std;
 
 class Pelicula: public Video
 {
-
+    private:
+        int numElementosPelicula;
     public:
     Pelicula(vector<string> vec);
 
     //Pelicula(string ID, string nombre, string genero, string calificacion, string duracion, string fecha);
     void mostrarDatos();
+    int getNumElementos();
 
 };
 

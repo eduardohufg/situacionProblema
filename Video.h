@@ -19,6 +19,7 @@ class Video{
         string calificacion;
         string duracion;
         string fecha;
+        int numElementos;
 
     public:
         //ID,Nombre Pelicula/Serie,Duración,Género,Calificación,Fecha Estreno,ID Episodio,Nombre Episodio,Temporada,Num Episodio
@@ -31,10 +32,11 @@ class Video{
         string getNombreVideo();
         string getGenero();
         double getCalificacion();
-        void setCalificacion(string calificacion);
+        void setCalificacion(int calificacion);
         string getDuracion();
         string getFecha();
         vector<string> getMultiGenero();
+        virtual int getNumElementos();
         
 };
 #endif

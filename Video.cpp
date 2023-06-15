@@ -10,6 +10,7 @@ Video::Video()
     calificacion = "0";
     duracion ="0";
     fecha = "01/01/0000";
+    numElementos;
 }
 //ID,Nombre Pelicula/Serie,Duración,Género,Calificación,Fecha Estreno,ID Episodio,Nombre Episodio,Temporada,Num Episodio
 Video::Video(vector<string> vec)
@@ -20,6 +21,7 @@ Video::Video(vector<string> vec)
     genero = vec[3];
     calificacion = vec[4];
     fecha = vec[5];
+    numElementos = vec.size();
     
 }
 
@@ -54,9 +56,11 @@ double Video::getCalificacion()
     return calif;
 }
 
-void Video::setCalificacion(string calificacion)
+void Video::setCalificacion(int calificacion)
 {
-    this -> calificacion = calificacion;
+    string calif = to_string(calificacion);
+
+    this -> calificacion = calif;
 }
 
 string Video::getDuracion()
@@ -81,4 +85,9 @@ vector<string> Video::getMultiGenero()
     }
     return vec;
 
+}
+
+int Video::getNumElementos()
+{
+    return numElementos;
 }

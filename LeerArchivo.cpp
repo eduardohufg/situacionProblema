@@ -12,6 +12,8 @@ Leer el archivo de texto en c++
 #include "Episodio.h"
 #include <algorithm>
 #include <string>
+#include <typeinfo>
+#include <typeinfo.h>
 
 #include "Serie.h"
 
@@ -27,11 +29,19 @@ vector<Video*> videos;
 //vector<Serie> hacerSeries(vector<Video*> vecVideo);
 vector<string> separar(string linea);
 bool existeVector(vector<string> vec, string busqueda);
+bool esEpisodio(Video* video);
 
 int main(int argc, char const *argv[]){
 
     ifstream entrada;
+    //Excepcipones
     entrada.open("DatosPeliculas.csv");
+
+    //manejo normal del error
+    //if(entrada.fail()){
+       // cout<<"error, no puedo leer el archivo..."<<endl;
+        //return -1; //Error
+    //}
     string linea;
     int numeroDeLinea =1;
     int contaPelis =0;
@@ -63,9 +73,10 @@ int main(int argc, char const *argv[]){
     //for (int n = 0; n <co;n++){
 
 
-        //cout<<videos[n]->getCalificacion()<<endl;
+        //cout<<videos[n]->getNombreVideo();
+        //cout<<endl;
    //}
-    //system("pause");
+   
     entrada.close();
 
     int caso;
@@ -74,7 +85,8 @@ int main(int argc, char const *argv[]){
         //menu
         system("cls");
         cout<<"--------------------------------------------------------------"<<endl;
-        cout<<"                     Servicio streaming"<<endl<<endl;
+        cout<<"                     Servicio streaming"<<endl;
+        cout<<"--------------------------------------------------------------"<<endl<<endl;
         cout<<"Ingresa la opcion deseada"<<endl;
 
         cout<<endl<<"1. Cargar archivo de datos"<<endl;
@@ -85,7 +97,7 @@ int main(int argc, char const *argv[]){
         cout<<"6. Mostrar promedio de calificacion de una serie"<<endl;
         cout<<"7. Salir"<<endl;
         cout<<"--------------------------------------------------------------"<<endl;
-
+        cout<<"Entrada: ";
         cin>>caso;
         cin.ignore();
         string generoi;
@@ -94,6 +106,7 @@ int main(int argc, char const *argv[]){
         ifstream entradaArch;
         string lineaArch;
         int lin =0;
+        int entrada2;
         switch (caso)
         {
         case 1:
@@ -214,18 +227,31 @@ int main(int argc, char const *argv[]){
 
             system("cls");
             cout<<"--------------------------------------------------------------"<<endl;
+            cout<<"Buscador de series"<<endl<<endl;
             cout<<"Escriba el nombre de la serie deseada: "<<endl;
-            cin>>seri;
 
-            system("cls");
+            getline(cin,seri);
+            
+            //cout<<seri<<endl;
+            //cout<<videos[0]->getNombreVideo();
+            //system("cls");
+
                 cout<<"Lista de contenido que coinciden con la referencia: "<<endl<<endl;
+
                 
                 for(int i =0; i< videos.size();i++){
                     
-                    if(videos[i]->getNombreVideo() == seri){
-                        cout<<"--------------------------------------------------------------"<<endl;
-                        videos[i]->mostrarDatos();
-                        cout<<endl;
+                    if(esEpisodio(videos[i])){
+                        //Serie* apuntS = dynamic_cast<Serie*> (videos[i]);
+                        //cout<<seri<<endl;
+                        //videos[i]->getNombreVideo();
+                        //cout<<videos[i]->getNombreVideo()<<"          "<<seri<<endl;
+                        if(videos[i]->getNombreVideo() == seri){
+                            cout<<"--------------------------------------------------------------"<<endl;
+                            videos[i]->mostrarDatos();
+                            cout<<endl;
+                        }
+                        
                     }
                 }
 
@@ -239,8 +265,25 @@ int main(int argc, char const *argv[]){
 
         case 4:
             system("cls");
+            cout<<"--------------------------------------------------------------"<<endl;
+            cout<<"Mostrar peliculas por calificacion"<<endl;
+            cout<<"Ingresa la calificacion deseada: "<<endl;
+            int entrada2;
+            cin>>entrada2;
+            for(int i =0; i<videos.size(); i++){
+                
+            Pelicula* apuntP = dynamic_cast<Pelicula*> (videos[i]);
+            if(apuntP != 0){
+                if(apuntP->getCalificacion()>= entrada2){
+                    cout<<"---------------------------------------------------------------"<<endl;
+                    apuntP->mostrarDatos();
+            }
+            }
+            
+            }
             cout<<"Aun no impelentado"<<endl;
             system("pause");
+
 
 
 
@@ -249,12 +292,41 @@ int main(int argc, char const *argv[]){
 
         case 5:
             system("cls");
-            cout<<"Aun no impelentado"<<endl;
-            system("pause");
+            cout<<"--------------------------------------------------------------"<<endl<<endl;
+            cout<<"Calificar video"<<endl;
+            cout<<"Ingresa el nombre de la pelicula o capitulo que deseas calificar: ";
+            getline(cin,arch);
 
+            for(int i=0; 1<videos.size();i++){
+                Episodio* apuntE = dynamic_cast<Episodio*> (videos[i]);
+                if(apuntE != 0){
+                    if(apuntE->getNombreEpisodio() == arch){
+                        cout<<"---------------------------------------------------------------"<<endl;
+                        cout<<"Ingresa la calificacion";
+                        cin>>entrada2;
 
+                        apuntE->setCalificacion(entrada2);
 
+                        cout<<"Guardado"<<endl;
+                        system("pause");
+                        break;
+            }
+            }
+            else if(videos[i]->getNombreVideo() ==arch){
+                        cout<<"---------------------------------------------------------------"<<endl;
+                        cout<<"Ingresa la calificacion";
+                        cin>>entrada2;
 
+                        videos[i]->setCalificacion(entrada2);
+
+                        cout<<"Guardado"<<endl;
+                        system("pause");
+                        break;
+            }
+
+            }
+
+        
             break;
 
         case 6:
@@ -311,6 +383,16 @@ vector<string> separar(string linea){
 
 bool existeVector(vector<string> vec, string busqueda) {
     return find(vec.begin(), vec.end(), busqueda) != vec.end();
+}
+
+bool esEpisodio(Video* video){
+
+    if (video->getNumElementos() == 6){
+        return false;
+    }
+    else{
+        return true;
+    }
 }
 
 //vector<Serie> hacerSeries(vector<Video*> vecVideo){

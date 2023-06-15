@@ -18,6 +18,7 @@ class Episodio: public Video
         string nombreEpisodio;
         string temporadaEpisodio;
         string numeroEpisodio;
+        int numElementosEpisodio;
 
     public:
 
@@ -27,6 +28,7 @@ class Episodio: public Video
         string getTemporadaEpisodio();
         string getNumeroEpisodio();
         void mostrarDatos();
+        int getNumElementos();
 };
 
 
