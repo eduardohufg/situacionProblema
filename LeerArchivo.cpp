@@ -89,6 +89,7 @@ int main(int argc, char const *argv[]){
         cin>>caso;
         cin.ignore();
         string generoi;
+        string seri;
         string arch;
         ifstream entradaArch;
         string lineaArch;
@@ -212,6 +213,23 @@ int main(int argc, char const *argv[]){
         case 3:
 
             system("cls");
+            cout<<"--------------------------------------------------------------"<<endl;
+            cout<<"Escriba el nombre de la serie deseada: "<<endl;
+            cin>>seri;
+
+            system("cls");
+                cout<<"Lista de contenido que coinciden con la referencia: "<<endl<<endl;
+                
+                for(int i =0; i< videos.size();i++){
+                    
+                    if(videos[i]->getNombreVideo() == seri){
+                        cout<<"--------------------------------------------------------------"<<endl;
+                        videos[i]->mostrarDatos();
+                        cout<<endl;
+                    }
+                }
+
+            
             cout<<"Aun no impelentado"<<endl;
             system("pause");
 
