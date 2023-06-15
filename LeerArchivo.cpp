@@ -10,6 +10,11 @@ Leer el archivo de texto en c++
 #include "Video.h"
 #include "Pelicula.h"
 #include "Episodio.h"
+#include <algorithm>
+#include <string>
+
+#include "Serie.h"
+
 using namespace std;
 
 
@@ -19,8 +24,9 @@ vector<Pelicula> peliculas;
 vector<Video*> videos;
 
 
-
+//vector<Serie> hacerSeries(vector<Video*> vecVideo);
 vector<string> separar(string linea);
+bool existeVector(vector<string> vec, string busqueda);
 
 int main(int argc, char const *argv[]){
 
@@ -54,11 +60,12 @@ int main(int argc, char const *argv[]){
     
     //int co = videos.size();
     
-   // for (int n = 0; n <co;n++){
+    //for (int n = 0; n <co;n++){
 
 
-       // cout<<videos[n]->getNombreVideo()<<endl;
-   // }
+        //cout<<videos[n]->getCalificacion()<<endl;
+   //}
+    //system("pause");
     entrada.close();
 
     int caso;
@@ -81,24 +88,126 @@ int main(int argc, char const *argv[]){
 
         cin>>caso;
         cin.ignore();
-        
+        string generoi;
+        string arch;
+        ifstream entradaArch;
+        string lineaArch;
+        int lin =0;
         switch (caso)
         {
         case 1:
 
             system("cls");
-            cout<<"Aun no impelentado"<<endl;
+            cout<<"--------------------------------------------------------------"<<endl;
+            cout<<"Asegurate que el archivo que quieres cargar este en formato .csv"<<endl;
+            cout<<"Asegurese que el archivo este en la misma carpeta que este programa"<<endl;
+            cout<<"En caso de que no se encuentre en la misma carpeta, especifica la ruta"<<endl<<endl;
+
+            cout<<"Escriba entre comillas el nombre del archivo: ";
+            
+            cin>>arch;
+            
+            entradaArch.open(arch);
+            
+
+                //while (getline (entradaArch, lineaArch)){
+                //numeroDeLinea++;
+            //}
+            
+            while (getline (entradaArch, lineaArch)){
+                //cout<<(numeroDeLinea++)<<":"<<linea<<endl;
+                vector<string> datos = separar(lineaArch);
+                //cout<<numeroDeLinea++<<" ";
+                if (datos.size()== 6){
+                    //cout <<"pelicula";      
+                    Pelicula* pelis = new Pelicula(datos);
+                    videos[lin] = pelis;
+                    lin++;
+                    //videos.push_back(pelis);    
+                    //cout<<hola.getFecha();
+                    //stoi
+                }
+                else{
+                // cout<<"episodio";
+                Episodio* epis = new Episodio(datos);
+                videos[lin] = epis;
+                lin++;
+                //videos.push_back(epis);
+
+                }
+                //cout<<endl;
+    
+            }
+            videos.erase(videos.begin());
+            entradaArch.close();
+
+            cout<<"Lito!!"<<endl;
             system("pause");
             break;
 
         case 2:
+        
             system("cls");
-            cout<<"Aun no impelentado"<<endl;
+            cout<<"--------------------------------------------------------------"<<endl;
+            cout<<"Seleccione la opcion deseada"<<endl<<endl;
+            int entrada;
+            cout<<"1. Mostrar contenido con calificacion mayor o igual a la ingresada"<<endl;
+            cout<<"2. Mostrar contenido por genero"<<endl;
+            cout<<"3. Regresar al menu principal"<<endl;
+            cout<<"--------------------------------------------------------------"<<endl;
+            cout<<"Ingresa el numero de la opcion que deseas: ";
+            
+            cin>>entrada;
+            cout<<endl;
+            int opcion;
+            
+            if (entrada ==1){
+                cout<<"Calificacion deseada: ";
+                cin>>opcion;
+                system("cls");
+                cout<<"Lista de contenido que coinciden con la referencia: "<<endl<<endl;
+                for(int i =0; i< videos.size();i++){
+                    
+                    if(videos[i]->getCalificacion() >= opcion){
+                        cout<<"--------------------------------------------------------------"<<endl;
+                        videos[i]->mostrarDatos();
+                        cout<<endl;
+                    }
+                }
+            }
+            else if(entrada ==2){
+                cout<<"Teclee el genero deseado(Iniciando con mayuscula): ";
+                cin>>generoi;
+                system("cls");
+                cout<<"Lista de contenido que coinciden con la referencia: "<<endl<<endl;
+
+                for(int i =0; i< videos.size();i++){
+                    if(existeVector(videos[i]->getMultiGenero(),generoi)){
+                        cout<<"--------------------------------------------------------------"<<endl;
+                        videos[i]->mostrarDatos();
+                        cout<<endl;
+                    }
+                    //else{
+                        //system("cls");
+                        //cout<<"--------------------------------------------------------------"<<endl;
+                        //cout<<"No se encontraron refrencias, asegurese de escribir bien el genero"<<endl;
+                    //}
+                }
+
+
+            }
+            else{
+                break;
+            }
+
+            cout<<"No se encontraron refrencias, asegurese de escribir bien el genero"<<endl;
             system("pause");
 
 
 
             break;
+
+            
 
         case 3:
 
@@ -180,3 +289,26 @@ vector<string> separar(string linea){
     //cout<< "tokens: "<< numeroTokens<<endl<<endl;
     return tokens;
 }
+
+
+bool existeVector(vector<string> vec, string busqueda) {
+    return find(vec.begin(), vec.end(), busqueda) != vec.end();
+}
+
+//vector<Serie> hacerSeries(vector<Video*> vecVideo){
+    // vector<Serie> series;
+    // for(Video* dato : vecVideo){
+        
+    
+    //     if(tipo.find("Episodio")==1)
+    //     {
+    //         Video *t = (Video*)(dato);
+    //         series.push_back(t);
+    //     }
+    // }
+
+    //return series;
+
+
+
+//}

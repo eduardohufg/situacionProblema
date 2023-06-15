@@ -1,6 +1,7 @@
 #include "Video.h"
 #include <vector>
-
+#include <fstream>
+#include <sstream> // para string-stream
 Video::Video()
 {
     ID = "TT0000000";
@@ -10,19 +11,19 @@ Video::Video()
     duracion ="0";
     fecha = "01/01/0000";
 }
-
+//ID,Nombre Pelicula/Serie,Duración,Género,Calificación,Fecha Estreno,ID Episodio,Nombre Episodio,Temporada,Num Episodio
 Video::Video(vector<string> vec)
 {
     ID = vec[0];
     nombre = vec[1];
-    genero = vec[2];
-    calificacion = vec[3];
-    duracion =vec[4];
+    duracion =vec[2];
+    genero = vec[3];
+    calificacion = vec[4];
     fecha = vec[5];
     
 }
 
-Video::Video(string ID, string nombre, string genero, string calificacion, string duracion, string fecha)
+Video::Video(string ID, string nombre,string duracion, string genero, string calificacion, string fecha)
 {
     this -> ID = ID;
     this -> nombre = nombre;
@@ -47,9 +48,10 @@ string Video::getGenero()
     return genero;
 }
 
-string Video::getCalificacion()
+double Video::getCalificacion()
 {
-    return calificacion;
+    double calif = stod(calificacion);
+    return calif;
 }
 
 void Video::setCalificacion(string calificacion)
@@ -65,4 +67,18 @@ string Video::getDuracion()
 string Video::getFecha()
 {
     return fecha;
+}
+
+vector<string> Video::getMultiGenero()
+{
+    string gene;
+    vector<string> vec;
+    string cadena = genero; // La cadena que vamos a separar
+    stringstream inputt(cadena);                    // Convertir la cadena a un stream
+    while (getline(inputt, gene, '&'))
+    {
+        vec.push_back(gene);
+    }
+    return vec;
+
 }

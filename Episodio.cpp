@@ -1,6 +1,7 @@
 #include "Episodio.h"
 #include <vector>
 
+//ID,Nombre Pelicula/Serie,Duración,Género,Calificación,Fecha Estreno,ID Episodio,Nombre Episodio,Temporada,Num Episodio
 Episodio::Episodio(vector<string> vec) : Video(vec[0],vec[1],vec[2],vec[3],vec[4],vec[5])
 {
     IDEpisodio = vec[6];
