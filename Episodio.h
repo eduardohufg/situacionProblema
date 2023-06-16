@@ -23,12 +23,19 @@ class Episodio: public Video
     public:
 
         Episodio(vector<string> vec);
+        Episodio();
         string getIDEpisodio();
         string getNombreEpisodio();
         string getTemporadaEpisodio();
         string getNumeroEpisodio();
         void mostrarDatos();
         int getNumElementos();
+        Episodio operator +(Episodio e){
+            Episodio nuevoEpi;
+            nuevoEpi.setDuracion(nuevoEpi.getDuracion()+ e.getDuracion());
+            return nuevoEpi;
+        }
+        
 };
 
 

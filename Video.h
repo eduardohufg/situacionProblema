@@ -33,10 +33,17 @@ class Video{
         string getGenero();
         double getCalificacion();
         void setCalificacion(int calificacion);
-        string getDuracion();
+        int getDuracion();
+        void setDuracion(int duracion);
         string getFecha();
         vector<string> getMultiGenero();
         virtual int getNumElementos();
+        Video* operator +(Video* v){
+            Video* nuevoV;
+            nuevoV->duracion = to_string(stoi(duracion) + stoi(v->duracion));
+            return nuevoV;
+        }
+
         
 };
 #endif

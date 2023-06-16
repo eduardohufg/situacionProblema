@@ -2,6 +2,7 @@
 #include <vector>
 #include <fstream>
 #include <sstream> // para string-stream
+#include <iostream>
 Video::Video()
 {
     ID = "TT0000000";
@@ -25,7 +26,9 @@ Video::Video(vector<string> vec)
     
 }
 
-Video::Video(string ID, string nombre,string duracion, string genero, string calificacion, string fecha)
+
+
+Video::Video(string ID, string nombre, string duracion, string genero, string calificacion, string fecha)
 {
     this -> ID = ID;
     this -> nombre = nombre;
@@ -56,6 +59,7 @@ double Video::getCalificacion()
     return calif;
 }
 
+
 void Video::setCalificacion(int calificacion)
 {
     string calif = to_string(calificacion);
@@ -63,14 +67,19 @@ void Video::setCalificacion(int calificacion)
     this -> calificacion = calif;
 }
 
-string Video::getDuracion()
+int Video::getDuracion()
 {
-    return duracion;
+    return stoi(duracion);
 }
 
 string Video::getFecha()
 {
     return fecha;
+}
+
+void Video::setDuracion(int duracion)
+{
+    this -> duracion = to_string(duracion);
 }
 
 vector<string> Video::getMultiGenero()

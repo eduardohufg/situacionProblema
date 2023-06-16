@@ -12,6 +12,16 @@ Episodio::Episodio(vector<string> vec) : Video(vec[0],vec[1],vec[2],vec[3],vec[4
 
 }
 
+Episodio::Episodio(): Video()
+{
+    IDEpisodio = "tt0000000";
+    nombreEpisodio = "sin nombre";
+    temporadaEpisodio = "0";
+    numeroEpisodio = "0";
+    numElementosEpisodio = 0;
+
+}
+
 string Episodio::getIDEpisodio()
 {
     return IDEpisodio;
