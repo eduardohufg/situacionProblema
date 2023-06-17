@@ -1,5 +1,6 @@
 #include "Episodio.h"
 #include <vector>
+#include <algorithm>
 
 //ID,Nombre Pelicula/Serie,Duración,Género,Calificación,Fecha Estreno,ID Episodio,Nombre Episodio,Temporada,Num Episodio
 Episodio::Episodio(vector<string> vec) : Video(vec[0],vec[1],vec[2],vec[3],vec[4],vec[5])
@@ -8,18 +9,7 @@ Episodio::Episodio(vector<string> vec) : Video(vec[0],vec[1],vec[2],vec[3],vec[4
     nombreEpisodio =vec[7];
     temporadaEpisodio = vec[8];
     numeroEpisodio = vec[9];
-    numElementosEpisodio = vec.size();
-
-}
-
-Episodio::Episodio(): Video()
-{
-    IDEpisodio = "tt0000000";
-    nombreEpisodio = "sin nombre";
-    temporadaEpisodio = "0";
-    numeroEpisodio = "0";
-    numElementosEpisodio = 0;
-
+    
 }
 
 string Episodio::getIDEpisodio()
@@ -32,28 +22,55 @@ string Episodio::getNombreEpisodio()
     return nombreEpisodio;
 }
 
-string Episodio::getTemporadaEpisodio()
+int Episodio::getTemporadaEpisodio()
 {
-    return temporadaEpisodio;
+    return stoi(temporadaEpisodio);
 }
 
-string Episodio::getNumeroEpisodio()
+int Episodio::getNumeroEpisodio()
 {
-    return numeroEpisodio;
+    return stoi(numeroEpisodio);
 }
 
 void Episodio::mostrarDatos()
 {
+    cout << "---------------------------------------------------------------" << endl;
     cout<<"Nombre de la serie: "<<Video::getNombreVideo()<<"\n"
     <<"Nombre del episodio: "<<nombreEpisodio<<"\n"
     <<"Temporada: "<<temporadaEpisodio<<"\n"
     <<"Numero de Episodio "<<numeroEpisodio<<"\n"
+    <<"Duracion: "<<Video::getDuracion()<<"\n"
     <<"Genero: "<<Video::getGenero()<<"\n"
     <<"Calificacion: "<<Video::getCalificacion()<<"\n"
     <<"Fecha de estreno: "<<Video::getFecha()<<endl;
+    cout<<endl;
 }
 
-int Episodio::getNumElementos()
+void Episodio::mostrarPorCalificacion(double calif)
 {
-    return numElementosEpisodio;
+    if (Video::getCalificacion() >= calif)
+    {
+        
+        mostrarDatos();
+        
+    }
+}
+
+void Episodio::mostrarPorGenero(string gene)
+{
+    vector<string> vec = Video::getMultiGenero();
+
+    if (find(vec.begin(), vec.end(), gene) != vec.end())
+    {
+        mostrarDatos();
+    }
+}
+
+void Episodio::calificar(double calif, string nom)
+{
+    if (nombreEpisodio == nom)
+    {
+        Video::setCalificacion(calif);
+        cout << "---Guardado---" << endl;
+    }
 }

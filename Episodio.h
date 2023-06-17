@@ -18,23 +18,18 @@ class Episodio: public Video
         string nombreEpisodio;
         string temporadaEpisodio;
         string numeroEpisodio;
-        int numElementosEpisodio;
 
     public:
 
         Episodio(vector<string> vec);
-        Episodio();
         string getIDEpisodio();
         string getNombreEpisodio();
-        string getTemporadaEpisodio();
-        string getNumeroEpisodio();
+        int getTemporadaEpisodio();
+        int getNumeroEpisodio();
         void mostrarDatos();
-        int getNumElementos();
-        Episodio operator +(Episodio e){
-            Episodio nuevoEpi;
-            nuevoEpi.setDuracion(nuevoEpi.getDuracion()+ e.getDuracion());
-            return nuevoEpi;
-        }
+        void mostrarPorCalificacion(double calif);
+        void mostrarPorGenero(string gene);
+        void calificar(double calif,string nom);
         
 };
 
