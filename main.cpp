@@ -65,7 +65,7 @@ int main(int argc, char const *argv[])
         return -1;
     }
     Contenido contenido(videos);
-    int caso;
+    char caso;
     while (true)
     {
         system("cls");
@@ -94,10 +94,10 @@ int main(int argc, char const *argv[])
         ifstream entradaArch;
         string lineaArch;
         int lin = 0;
-        int entrada;
+        char entrada;
         switch (caso)
         {
-        case 1:
+        case '1':
 
             system("cls");
             cout << "--------------------------------------------------------------" << endl;
@@ -145,7 +145,7 @@ int main(int argc, char const *argv[])
             system("pause");
             break;
 
-        case 2:
+        case '2':
 
             system("cls");
             cout << "--------------------------------------------------------------" << endl;
@@ -160,7 +160,7 @@ int main(int argc, char const *argv[])
             cout << endl;
             int opcion;
 
-            if (entrada == 1)
+            if (entrada == '1')
             {
                 cout << "Calificacion deseada: ";
                 cin >> opcion;
@@ -169,7 +169,7 @@ int main(int argc, char const *argv[])
                      << endl;
                 contenido.contenidoPorCalificacion(opcion);
             }
-            else if (entrada == 2)
+            else if (entrada == '2')
             {
                 cout << "Teclee el genero deseado(Iniciando con mayuscula): ";
                 cin >> genero;
@@ -187,7 +187,7 @@ int main(int argc, char const *argv[])
 
             break;
 
-        case 3:
+        case '3':
             system("cls");
             cout << "--------------------------------------------------------------" << endl;
             cout << "        Buscador de series" << endl<< endl;
@@ -200,7 +200,7 @@ int main(int argc, char const *argv[])
             system("pause");
             break;
 
-        case 4:
+        case '4':
             system("cls");
             cout << "--------------------------------------------------------------" << endl;
             cout << "        Mostrar peliculas por calificacion" <<endl<<endl;
@@ -214,7 +214,7 @@ int main(int argc, char const *argv[])
             system("pause");
             break;
 
-        case 5:
+        case '5':
             system("cls");
             cout << "--------------------------------------------------------------" << endl;
             cout << "                 Calificar video" << endl<<endl;
@@ -227,7 +227,7 @@ int main(int argc, char const *argv[])
             system("pause");
             break;
 
-        case 6:
+        case '6':
             system("cls");
             cout << "---------------------------------------------------------------" << endl;
             cout << "          Ver promedio de duracion de serie" << endl<< endl;
@@ -238,7 +238,7 @@ int main(int argc, char const *argv[])
             contenido.calcularPromedioSerie(inputserie);
             system("pause");
             break;
-        case 7:
+        case '7':
             return 0;
 
         default:
