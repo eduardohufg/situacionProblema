@@ -13,6 +13,7 @@ Leer el archivo de texto en c++
 #include "Contenido.h"
 #include <algorithm>
 #include <string>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -24,11 +25,13 @@ vector<string> separar(string linea);
 int main(int argc, char const *argv[])
 {
 
+
+    try{
     ifstream entrada;
 
 
     entrada.open("DatosPeliculas.csv");
-
+    
     string linea;
     int numeroDeLinea = 1;
     int contaPelis = 0;
@@ -52,12 +55,22 @@ int main(int argc, char const *argv[])
             videos.push_back(epis);
         }
     }
+    if(videos.empty())
+        throw "NO SE ENCONTRO EL ARCHIVO, EL PROGRAMA FINALIZARA";
+    
+    
     videos.erase(videos.begin());
-    
-    Contenido contenido(videos);             
+            
     entrada.close();
+    }
+    catch(const char *error){
+        cout<<endl<<error<<endl;
+        system("pause");
+        return -1;
+    }
+    Contenido contenido(videos); 
+    char caso;
     
-    int caso;
     while (true)
     {
         system("cls");
@@ -79,17 +92,18 @@ int main(int argc, char const *argv[])
         cout << "--------------------------------------------------------------" << endl;
         cout << "Entrada: ";
         cin >> caso;
-        cin.ignore();
+        
         string genero;
         string inputserie;
         string archivo;
         ifstream entradaArch;
         string lineaArch;
         int lin = 0;
-        int entrada;
+        char entrada;
+        try{
         switch (caso)
         {
-        case 1:
+        case '1':
 
             system("cls");
             cout << "--------------------------------------------------------------" << endl;
@@ -102,7 +116,7 @@ int main(int argc, char const *argv[])
 
             cin >> archivo;
             
-
+            try{
             entradaArch.open(archivo);
 
             while (getline(entradaArch, lineaArch))
@@ -123,14 +137,22 @@ int main(int argc, char const *argv[])
                 }
             }
             
+            if(videos2.empty())
+                throw "ERROR, ARCHIVO NO ENCONTRADO, SE MANTIENE EL ARCHIVO ANTERIOR";
             videos2.erase(videos2.begin());
-            contenido.cambiarArchivo(videos2);
             entradaArch.close();
+            }
+            catch(const char *error){
+                cout<<endl<<error<<endl;
+                system("pause");
+                break;
+            }
+            contenido.cambiarArchivo(videos2);
             cout << "Lito!!" << endl;
             system("pause");
             break;
 
-        case 2:
+        case '2':
 
             system("cls");
             cout << "--------------------------------------------------------------" << endl;
@@ -143,9 +165,9 @@ int main(int argc, char const *argv[])
 
             cin >> entrada;
             cout << endl;
-            int opcion;
+            double opcion;
 
-            if (entrada == 1)
+            if (entrada == '1')
             {
                 cout << "Calificacion deseada: ";
                 cin >> opcion;
@@ -154,7 +176,7 @@ int main(int argc, char const *argv[])
                      << endl;
                 contenido.contenidoPorCalificacion(opcion);
             }
-            else if (entrada == 2)
+            else if (entrada == '2')
             {
                 cout << "Teclee el genero deseado(Iniciando con mayuscula): ";
                 cin >> genero;
@@ -172,7 +194,7 @@ int main(int argc, char const *argv[])
 
             break;
 
-        case 3:
+        case '3':
             system("cls");
             cout << "--------------------------------------------------------------" << endl;
             cout << "        Buscador de series" << endl<< endl;
@@ -185,7 +207,7 @@ int main(int argc, char const *argv[])
             system("pause");
             break;
 
-        case 4:
+        case '4':
             system("cls");
             cout << "--------------------------------------------------------------" << endl;
             cout << "        Mostrar peliculas por calificacion" <<endl<<endl;
@@ -199,7 +221,7 @@ int main(int argc, char const *argv[])
             system("pause");
             break;
 
-        case 5:
+        case '5':
             system("cls");
             cout << "--------------------------------------------------------------" << endl;
             cout << "                 Calificar video" << endl<<endl;
@@ -212,7 +234,7 @@ int main(int argc, char const *argv[])
             system("pause");
             break;
 
-        case 6:
+        case '6':
             system("cls");
             cout << "---------------------------------------------------------------" << endl;
             cout << "          Ver promedio de duracion de serie" << endl<< endl;
@@ -223,13 +245,23 @@ int main(int argc, char const *argv[])
             contenido.calcularPromedioSerie(inputserie);
             system("pause");
             break;
-        case 7:
+        case '7':
             return 0;
 
         default:
             break;
         }
+        }
+        catch(std::string &error){
+            cout<<endl<<"ERROR, OPCION NO VALIDA"<<endl;
+            system("pause");
+            break;
+
+        }
+
     }
+
+    
 
     return 0;
 }
