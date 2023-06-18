@@ -13,7 +13,6 @@ Leer el archivo de texto en c++
 #include "Contenido.h"
 #include <algorithm>
 #include <string>
-#include <stdlib.h>
 
 using namespace std;
 
@@ -24,14 +23,12 @@ vector<string> separar(string linea);
 
 int main(int argc, char const *argv[])
 {
-
-
     try{
     ifstream entrada;
 
 
     entrada.open("DatosPeliculas.csv");
-    
+
     string linea;
     int numeroDeLinea = 1;
     int contaPelis = 0;
@@ -57,10 +54,9 @@ int main(int argc, char const *argv[])
     }
     if(videos.empty())
         throw "NO SE ENCONTRO EL ARCHIVO, EL PROGRAMA FINALIZARA";
-    
-    
     videos.erase(videos.begin());
-            
+    
+             
     entrada.close();
     }
     catch(const char *error){
@@ -68,9 +64,8 @@ int main(int argc, char const *argv[])
         system("pause");
         return -1;
     }
-    Contenido contenido(videos); 
-    char caso;
-    
+    Contenido contenido(videos);
+    int caso;
     while (true)
     {
         system("cls");
@@ -92,18 +87,17 @@ int main(int argc, char const *argv[])
         cout << "--------------------------------------------------------------" << endl;
         cout << "Entrada: ";
         cin >> caso;
-        
+        cin.ignore();
         string genero;
         string inputserie;
         string archivo;
         ifstream entradaArch;
         string lineaArch;
         int lin = 0;
-        char entrada;
-        try{
+        int entrada;
         switch (caso)
         {
-        case '1':
+        case 1:
 
             system("cls");
             cout << "--------------------------------------------------------------" << endl;
@@ -136,7 +130,6 @@ int main(int argc, char const *argv[])
                     videos2.push_back(epis);
                 }
             }
-            
             if(videos2.empty())
                 throw "ERROR, ARCHIVO NO ENCONTRADO, SE MANTIENE EL ARCHIVO ANTERIOR";
             videos2.erase(videos2.begin());
@@ -152,7 +145,7 @@ int main(int argc, char const *argv[])
             system("pause");
             break;
 
-        case '2':
+        case 2:
 
             system("cls");
             cout << "--------------------------------------------------------------" << endl;
@@ -165,9 +158,9 @@ int main(int argc, char const *argv[])
 
             cin >> entrada;
             cout << endl;
-            double opcion;
+            int opcion;
 
-            if (entrada == '1')
+            if (entrada == 1)
             {
                 cout << "Calificacion deseada: ";
                 cin >> opcion;
@@ -176,7 +169,7 @@ int main(int argc, char const *argv[])
                      << endl;
                 contenido.contenidoPorCalificacion(opcion);
             }
-            else if (entrada == '2')
+            else if (entrada == 2)
             {
                 cout << "Teclee el genero deseado(Iniciando con mayuscula): ";
                 cin >> genero;
@@ -194,7 +187,7 @@ int main(int argc, char const *argv[])
 
             break;
 
-        case '3':
+        case 3:
             system("cls");
             cout << "--------------------------------------------------------------" << endl;
             cout << "        Buscador de series" << endl<< endl;
@@ -207,7 +200,7 @@ int main(int argc, char const *argv[])
             system("pause");
             break;
 
-        case '4':
+        case 4:
             system("cls");
             cout << "--------------------------------------------------------------" << endl;
             cout << "        Mostrar peliculas por calificacion" <<endl<<endl;
@@ -221,20 +214,20 @@ int main(int argc, char const *argv[])
             system("pause");
             break;
 
-        case '5':
+        case 5:
             system("cls");
             cout << "--------------------------------------------------------------" << endl;
             cout << "                 Calificar video" << endl<<endl;
             cout << "Ingresa el nombre de la pelicula o capitulo que deseas calificar: ";
             getline(cin, inputserie);
-            cout << "Ingresa la calificacion";
+            cout << "Ingresa la calificacion: ";
             cin >> entrada2;
             system("cls");
             contenido.calificarContenido(entrada2, inputserie);
             system("pause");
             break;
 
-        case '6':
+        case 6:
             system("cls");
             cout << "---------------------------------------------------------------" << endl;
             cout << "          Ver promedio de duracion de serie" << endl<< endl;
@@ -245,23 +238,13 @@ int main(int argc, char const *argv[])
             contenido.calcularPromedioSerie(inputserie);
             system("pause");
             break;
-        case '7':
+        case 7:
             return 0;
 
         default:
             break;
         }
-        }
-        catch(std::string &error){
-            cout<<endl<<"ERROR, OPCION NO VALIDA"<<endl;
-            system("pause");
-            break;
-
-        }
-
     }
-
-    
 
     return 0;
 }
