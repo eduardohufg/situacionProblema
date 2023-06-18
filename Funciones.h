@@ -13,7 +13,7 @@ using namespace std; //declaracion del namespace
 
 class Funciones{
     public:
-        //metodos abstractos puros
+        //metodos abstractos puros(interfaces para los metodos heredados)
         virtual void mostrarPorCalificacion(double calif)=0;
         virtual void mostrarPorGenero(string gene)=0;
         virtual void calificar(double calif, string nom)=0;
