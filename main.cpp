@@ -154,7 +154,7 @@ int main(int argc, char const *argv[])
                 break;
             }
             contenido.cambiarArchivo(videos2); //se llama al metodo del objeto para cambiar el contenido
-            cout << "Lito!!" << endl;
+            cout << "Listo!!" << endl;
             system("pause");
             break;
 
@@ -208,6 +208,7 @@ int main(int argc, char const *argv[])
             system("cls");
             cout << "--------------------------------------------------------------" << endl;
             cout << "        Buscador de series" << endl<< endl;
+            cout << "**Escriba el nombre iniciando con mayuscula cada palabra**"<<endl<<endl;
             cout << "Escriba el nombre de la serie deseada: ";
             getline(cin, inputserie); //ingreso del nombre de la serie
             system("cls");
